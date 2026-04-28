@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heart, CheckCircle, Home, Car, MapPin } from "lucide-react";
+import { Heart, CheckCircle, Home, Car, Briefcase, MapPin } from "lucide-react";
 import { type Listing, formatPrice } from "@/data/seedData";
 
 interface DealCardProps {
@@ -8,6 +8,7 @@ interface DealCardProps {
 
 const DealCard = ({ listing }: DealCardProps) => {
   const isProperty = listing.assetType === "property";
+  const isBusiness = listing.assetType === "business";
 
   return (
     <Link to={`/listing/${listing.id}`} className="group block">
@@ -33,7 +34,7 @@ const DealCard = ({ listing }: DealCardProps) => {
           </button>
           {/* Asset type icon */}
           <div className="absolute bottom-3 left-3 bg-card/80 backdrop-blur-sm px-2 py-1 rounded-md flex items-center gap-1.5 text-xs font-medium text-foreground">
-            {isProperty ? <Home size={12} /> : <Car size={12} />}
+            {isProperty ? <Home size={12} /> : isBusiness ? <Briefcase size={12} /> : <Car size={12} />}
             {listing.subCategory}
           </div>
         </div>
@@ -67,7 +68,9 @@ const DealCard = ({ listing }: DealCardProps) => {
 
           {/* Key specs */}
           <div className="flex gap-2 mt-3 pt-3 border-t border-border">
-            {isProperty ? (
+            {isBusiness ? (
+              <span className="text-muted-foreground text-xs line-clamp-1">{listing.description}</span>
+            ) : isProperty ? (
               <>
                 {listing.specs.bedrooms && (
                   <span className="text-muted-foreground text-xs">{listing.specs.bedrooms} bed</span>

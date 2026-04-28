@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, MapPin, CheckCircle, AlertTriangle, Eye, MessageCircle, DollarSign, Home, Car } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin, CheckCircle, AlertTriangle, Eye, MessageCircle, DollarSign, Home, Car, Briefcase } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DealCard from "@/components/DealCard";
@@ -26,6 +26,7 @@ const ListingDetail = () => {
   }
 
   const isProperty = listing.assetType === "property";
+  const isBusiness = listing.assetType === "business";
   const similar = listings.filter((l) => l.id !== listing.id && l.assetType === listing.assetType).slice(0, 3);
 
   return (
@@ -89,7 +90,7 @@ const ListingDetail = () => {
             {/* Title & location */}
             <div>
               <div className="flex items-center gap-2 mb-2">
-                {isProperty ? <Home size={16} className="text-primary" /> : <Car size={16} className="text-primary" />}
+                {isProperty ? <Home size={16} className="text-primary" /> : isBusiness ? <Briefcase size={16} className="text-primary" /> : <Car size={16} className="text-primary" />}
                 <span className="text-sm text-muted-foreground">{listing.subCategory}</span>
                 {listing.isVerified && (
                   <span className="flex items-center gap-1 text-xs font-medium text-primary bg-secondary px-2 py-0.5 rounded-md">

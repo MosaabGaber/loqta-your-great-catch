@@ -1,7 +1,7 @@
 export interface Listing {
   id: string;
   title: string;
-  assetType: "property" | "car";
+  assetType: "property" | "car" | "business";
   subCategory: string;
   askingPrice: number;
   marketValue: number;
@@ -178,6 +178,131 @@ export const listings: Listing[] = [
     createdAt: "2026-04-12",
     risks: ["Minor scratch on rear bumper — cosmetic only"],
   },
+  {
+    id: "7",
+    title: "Cairo Rooftop Café",
+    assetType: "business",
+    subCategory: "Café",
+    askingPrice: 1200000,
+    marketValue: 1538500,
+    discountPercentage: 22,
+    reasonBelowMarket: "Owner relocating abroad",
+    reasonDetails: "Owner is moving abroad and needs to sell the fully equipped business quickly.",
+    locationGovernorate: "Cairo",
+    locationArea: "Zamalek",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=600&fit=crop"
+    ],
+    isVerified: true,
+    isFeatured: true,
+    urgencyLevel: "medium",
+    specs: {},
+    description: "Coffee shop with established customer base, fully equipped",
+    status: "live",
+    createdAt: "2026-04-14",
+    risks: [],
+  },
+  {
+    id: "8",
+    title: "Auto Parts Store",
+    assetType: "business",
+    subCategory: "Store",
+    askingPrice: 850000,
+    marketValue: 1036500,
+    discountPercentage: 18,
+    reasonBelowMarket: "Owner retiring",
+    reasonDetails: "Owner is retiring after running the business for 8 years.",
+    locationGovernorate: "Cairo",
+    locationArea: "Heliopolis",
+    image: "https://images.unsplash.com/photo-1632292220916-e9c34ddcd5fa?w=600&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1632292220916-e9c34ddcd5fa?w=800&h=600&fit=crop"
+    ],
+    isVerified: true,
+    isFeatured: false,
+    urgencyLevel: "low",
+    specs: {},
+    description: "Running business, 8 years established, prime location",
+    status: "live",
+    createdAt: "2026-04-15",
+    risks: [],
+  },
+  {
+    id: "9",
+    title: "Pharmacy",
+    assetType: "business",
+    subCategory: "Pharmacy",
+    askingPrice: 2400000,
+    marketValue: 3200000,
+    discountPercentage: 25,
+    reasonBelowMarket: "Partnership dispute",
+    reasonDetails: "Partners dissolving the business, looking for a quick buyout.",
+    locationGovernorate: "Cairo",
+    locationArea: "Maadi",
+    image: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=600&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&h=600&fit=crop"
+    ],
+    isVerified: true,
+    isFeatured: true,
+    urgencyLevel: "high",
+    specs: {},
+    description: "Licensed pharmacy with loyal customer base and full inventory",
+    status: "live",
+    createdAt: "2026-04-16",
+    risks: ["License transfer takes 1-2 months"],
+  },
+  {
+    id: "10",
+    title: "Gym & Fitness Center",
+    assetType: "business",
+    subCategory: "Gym",
+    askingPrice: 3100000,
+    marketValue: 3827000,
+    discountPercentage: 19,
+    reasonBelowMarket: "Consolidating branches",
+    reasonDetails: "Brand is closing this branch to focus on larger locations.",
+    locationGovernorate: "Cairo",
+    locationArea: "Nasr City",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop"
+    ],
+    isVerified: true,
+    isFeatured: false,
+    urgencyLevel: "medium",
+    specs: {},
+    description: "300 active members, full equipment, established brand",
+    status: "live",
+    createdAt: "2026-04-17",
+    risks: [],
+  },
+  {
+    id: "11",
+    title: "Tech Coworking Space",
+    assetType: "business",
+    subCategory: "Coworking",
+    askingPrice: 4500000,
+    marketValue: 5625000,
+    discountPercentage: 20,
+    reasonBelowMarket: "Seeking liquidity for new venture",
+    reasonDetails: "Owner is selling to fund a tech startup.",
+    locationGovernorate: "Cairo",
+    locationArea: "New Cairo",
+    image: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=600&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=800&h=600&fit=crop"
+    ],
+    isVerified: true,
+    isFeatured: true,
+    urgencyLevel: "low",
+    specs: {},
+    description: "Fully furnished workspace, 80% occupancy rate, premium location",
+    status: "live",
+    createdAt: "2026-04-18",
+    risks: [],
+  }
 ];
 
 export const formatPrice = (price: number): string => {
@@ -187,3 +312,4 @@ export const formatPrice = (price: number): string => {
 export const governorates = ["Cairo", "Giza", "Alexandria", "Dakahlia", "Sharqia", "Qalyubia"];
 export const propertySubCategories = ["Apartment", "Villa", "Penthouse", "Townhouse", "Land", "Chalet"];
 export const carSubCategories = ["Sedan", "SUV", "Hatchback", "Coupe", "Pickup", "Van"];
+export const businessSubCategories = ["Café", "Store", "Pharmacy", "Gym", "Restaurant", "Coworking", "Other"];

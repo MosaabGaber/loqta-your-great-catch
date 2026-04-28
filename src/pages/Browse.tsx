@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { listings, governorates } from "@/data/seedData";
 
 const Browse = () => {
-  const [assetType, setAssetType] = useState<"all" | "property" | "car">("all");
+  const [assetType, setAssetType] = useState<"all" | "property" | "car" | "business">("all");
   const [location, setLocation] = useState("");
   const [sortBy, setSortBy] = useState("newest");
   const [verifiedOnly, setVerifiedOnly] = useState(false);
@@ -36,7 +36,7 @@ const Browse = () => {
           <div className="flex flex-wrap items-center gap-3">
             {/* Asset type toggle */}
             <div className="flex bg-secondary rounded-lg p-1">
-              {(["all", "property", "car"] as const).map((t) => (
+              {(["all", "property", "car", "business"] as const).map((t) => (
                 <button
                   key={t}
                   onClick={() => setAssetType(t)}
@@ -44,7 +44,7 @@ const Browse = () => {
                     assetType === t ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {t === "all" ? "All" : t === "property" ? "Property" : "Cars"}
+                  {t === "all" ? "All" : t === "property" ? "Property" : t === "car" ? "Cars" : "Businesses"}
                 </button>
               ))}
             </div>

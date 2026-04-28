@@ -3,14 +3,14 @@ import { CheckCircle, Upload, ChevronRight, ChevronLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { propertySubCategories, carSubCategories, governorates } from "@/data/seedData";
+import { propertySubCategories, carSubCategories, businessSubCategories, governorates } from "@/data/seedData";
 
 const steps = ["Asset Type", "Details", "Pricing", "Media", "Contact", "Review"];
 
 const Sell = () => {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({
-    assetType: "" as "" | "property" | "car",
+    assetType: "" as "" | "property" | "car" | "business",
     subCategory: "",
     location: "",
     area: "",
@@ -26,6 +26,8 @@ const Sell = () => {
     color: "",
     condition: "",
     license: "",
+    establishedYear: "",
+    revenue: "",
     askingPrice: "",
     marketValue: "",
     reason: "",
@@ -84,8 +86,8 @@ const Sell = () => {
           {step === 0 && (
             <div className="space-y-6">
               <h2 className="text-xl font-bold text-foreground">What are you selling?</h2>
-              <div className="grid grid-cols-2 gap-4">
-                {(["property", "car"] as const).map((t) => (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {(["property", "car", "business"] as const).map((t) => (
                   <button
                     key={t}
                     onClick={() => update("assetType", t)}
@@ -93,8 +95,8 @@ const Sell = () => {
                       form.assetType === t ? "border-primary bg-secondary" : "border-border hover:border-primary/30"
                     }`}
                   >
-                    <div className="text-3xl mb-2">{t === "property" ? "🏠" : "🚗"}</div>
-                    <div className="font-semibold text-foreground">{t === "property" ? "Property" : "Car"}</div>
+                    <div className="text-3xl mb-2">{t === "property" ? "🏠" : t === "car" ? "🚗" : "💼"}</div>
+                    <div className="font-semibold text-foreground">{t === "property" ? "Property" : t === "car" ? "Car" : "Business"}</div>
                   </button>
                 ))}
               </div>
@@ -105,7 +107,7 @@ const Sell = () => {
                   className="w-full h-10 rounded-lg border border-input bg-background px-3 text-sm"
                 >
                   <option value="">Select sub-category</option>
-                  {(form.assetType === "property" ? propertySubCategories : carSubCategories).map((c) => (
+                  {(form.assetType === "property" ? propertySubCategories : form.assetType === "car" ? carSubCategories : businessSubCategories).map((c) => (
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </select>
@@ -117,7 +119,7 @@ const Sell = () => {
           {step === 1 && (
             <div className="space-y-4">
               <h2 className="text-xl font-bold text-foreground">
-                {form.assetType === "property" ? "Property Details" : "Car Details"}
+                {form.assetType === "property" ? "Property Details" : form.assetType === "car" ? "Car Details" : "Business Details"}
               </h2>
               {form.assetType === "property" ? (
                 <div className="grid grid-cols-2 gap-4">
@@ -138,7 +140,7 @@ const Sell = () => {
                     <option>Registered</option><option>Installment Transfer</option><option>Power of Attorney</option>
                   </select>
                 </div>
-              ) : (
+              ) : form.assetType === "car" ? (
                 <div className="grid grid-cols-2 gap-4">
                   <input placeholder="Make (e.g., Toyota)" value={form.make} onChange={(e) => update("make", e.target.value)} className="h-10 rounded-lg border border-input bg-background px-3 text-sm" />
                   <input placeholder="Model (e.g., Corolla)" value={form.model} onChange={(e) => update("model", e.target.value)} className="h-10 rounded-lg border border-input bg-background px-3 text-sm" />
@@ -153,6 +155,16 @@ const Sell = () => {
                     <option value="">License Status</option>
                     <option>Valid</option><option>Expired</option><option>Not Licensed</option>
                   </select>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-4">
+                  <select value={form.location} onChange={(e) => update("location", e.target.value)} className="h-10 rounded-lg border border-input bg-background px-3 text-sm col-span-2">
+                    <option value="">Governorate</option>
+                    {governorates.map((g) => <option key={g}>{g}</option>)}
+                  </select>
+                  <input placeholder="Area (sqm) - Optional" value={form.area} onChange={(e) => update("area", e.target.value)} className="h-10 rounded-lg border border-input bg-background px-3 text-sm" />
+                  <input placeholder="Established Year" value={form.establishedYear} onChange={(e) => update("establishedYear", e.target.value)} className="h-10 rounded-lg border border-input bg-background px-3 text-sm" />
+                  <input placeholder="Monthly Revenue (EGP) - Optional" value={form.revenue} onChange={(e) => update("revenue", e.target.value)} className="h-10 rounded-lg border border-input bg-background px-3 text-sm col-span-2" />
                 </div>
               )}
             </div>

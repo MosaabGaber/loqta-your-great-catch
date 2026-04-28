@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
-import { Home, Car, ArrowRight } from "lucide-react";
+import { Home, Car, ArrowRight, Briefcase } from "lucide-react";
 import { listings } from "@/data/seedData";
 
 const Categories = () => {
   const propertyCount = listings.filter((l) => l.assetType === "property").length;
   const carCount = listings.filter((l) => l.assetType === "car").length;
+  const businessCount = listings.filter((l) => l.assetType === "business").length;
 
   const cats = [
     { label: "Real Estate", icon: Home, count: propertyCount, href: "/browse?type=property", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=300&fit=crop" },
     { label: "Cars", icon: Car, count: carCount, href: "/browse?type=car", img: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&h=300&fit=crop" },
+    { label: "Businesses", icon: Briefcase, count: businessCount, href: "/browse?type=business", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=300&fit=crop" },
   ];
 
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">Browse by Category</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {cats.map((cat) => (
             <Link key={cat.label} to={cat.href} className="group relative rounded-xl overflow-hidden card-shadow hover:shadow-lg transition-all">
               <div className="aspect-[2/1] relative">

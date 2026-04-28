@@ -44,6 +44,7 @@ const HeroSection = () => (
             <option value="">All Types</option>
             <option>Property</option>
             <option>Car</option>
+            <option>Business</option>
           </select>
           <select className="h-10 rounded-lg border border-input bg-background px-3 text-sm text-foreground">
             <option value="">Any Price</option>
